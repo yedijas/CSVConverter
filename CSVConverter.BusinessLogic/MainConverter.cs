@@ -17,28 +17,27 @@ namespace CSVConverter.BusinessLogic
         public MainConverter(string recordOne, string recordTwo)
         {
             oldString = new TwoStrings(recordOne, recordTwo);
-            newString = TransformString();
+            newString = new TwoStrings();
+            TransformString();
         }
 
         /// <summary>
         /// Transforms the old string to new values.
         /// </summary>
         /// <returns>Updated values</returns>
-        public TwoStrings TransformString ()
+        public void TransformString ()
         {
-            return TransformString(oldString);
+            TransformString(oldString);
         }
 
         /// <summary>
         /// Transforms the old string to new values.
         /// </summary>
         /// <returns>Updated values</returns>
-        public TwoStrings TransformString(TwoStrings _oldString)
+        public void TransformString(TwoStrings _oldString)
         {
-            TwoStrings _newString = new TwoStrings();
-
             // null check first
-            if (oldString != null)
+            if (_oldString != null)
             {
                 // values of the params to replace
                 if (Regex.IsMatch(_oldString.recordTwo, @"^[a-zA-Z]+$")
@@ -51,34 +50,34 @@ namespace CSVConverter.BusinessLogic
                     switch (_oldString.recordOne.ToUpperInvariant())
                     {
                         case "Y":
-                            _newString.recordOne = "1";
-                            _newString.recordTwo = "1";
+                            newString.recordOne = "1";
+                            newString.recordTwo = "1";
                             break;
                         case "N":
-                            _newString.recordOne = "1";
-                            _newString.recordTwo = "2";
+                            newString.recordOne = "1";
+                            newString.recordTwo = "2";
                             break;
                         case "R":
-                            _newString.recordOne = "2";
-                            _newString.recordTwo = "1";
+                            newString.recordOne = "2";
+                            newString.recordTwo = "1";
                             break;
                         case "H":
-                            _newString.recordOne = "2";
-                            _newString.recordTwo = "2";
+                            newString.recordOne = "2";
+                            newString.recordTwo = "2";
                             break;
                         case "3":
-                            _newString.recordOne = "3";
-                            _newString.recordTwo = "1";
+                            newString.recordOne = "3";
+                            newString.recordTwo = "1";
                             break;
                         default:
                             // default it to individual residence
-                            _newString.recordOne = _oldString.recordOne;
+                            newString.recordOne = _oldString.recordOne;
                             if (!Regex.IsMatch(_oldString.recordOne, @"^[1-3]"))
                             {
-                                _newString.recordOne = "1";
+                                newString.recordOne = "1";
 
                             }
-                            _newString.recordTwo = "1";
+                            newString.recordTwo = "1";
                             break;
                     }
                 }
@@ -87,13 +86,11 @@ namespace CSVConverter.BusinessLogic
                     if (_oldString.recordOne.Equals("4") || _oldString.recordOne.Equals("99"))
                     {
                         // default it to individual residence
-                        _newString.recordOne = "1";
-                        _newString.recordTwo = "1";
+                        newString.recordOne = "1";
+                        newString.recordTwo = "1";
                     }
                 }
             }
-
-            return _newString;
         }
     }
 }

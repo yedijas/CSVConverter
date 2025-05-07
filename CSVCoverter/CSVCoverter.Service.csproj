@@ -56,5 +56,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CSVConverter.BusinessLogic\CSVConverter.BusinessLogic.csproj">
+      <Project>{1296840E-79B6-4C97-A699-61F8E0C632CC}</Project>
+      <Name>CSVConverter.BusinessLogic</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
