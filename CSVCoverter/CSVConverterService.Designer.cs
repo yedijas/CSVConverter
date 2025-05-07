@@ -1,4 +1,4 @@
-﻿namespace CSVCoverter
+﻿namespace CSVConverter
 {
     partial class CSVConverterService
     {
